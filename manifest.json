@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+
+  "name": "texx-haxx.",
+  "description": "Some hacks to make tripletex life better.",
+  "version": "1.0",
+
+  "permissions": [
+    "tabs",
+    "contextMenus",
+    "notifications",
+    "activeTab"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "icons": {
+    "16": "icon.png"
+  },
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_title": "test"
+  }
+}

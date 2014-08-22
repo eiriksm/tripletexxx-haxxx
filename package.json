@@ -1,0 +1,27 @@
+{
+  "name": "tripletexxx-haxxx",
+  "version": "1.0.0",
+  "description": "tripletexxx-haxxx =================",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eiriksm/tripletexxx-haxxx.git"
+  },
+  "author": "Eirik S. Morland",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eiriksm/tripletexxx-haxxx/issues"
+  },
+  "homepage": "https://github.com/eiriksm/tripletexxx-haxxx",
+  "devDependencies": {
+    "browserify": "^5.10.1",
+    "gulp": "^3.8.7",
+    "istanbul": "^0.3.0",
+    "mocha": "^1.21.4",
+    "should": "^4.0.4",
+    "vinyl-source-stream": "^0.1.1"
+  }
+}
