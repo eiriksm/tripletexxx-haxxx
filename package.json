@@ -18,6 +18,7 @@
   "homepage": "https://github.com/eiriksm/tripletexxx-haxxx",
   "devDependencies": {
     "browserify": "^5.10.1",
+    "coveralls": "^2.11.1",
     "gulp": "^3.8.7",
     "istanbul": "^0.3.0",
     "mocha": "^1.21.4",
