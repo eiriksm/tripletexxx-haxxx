@@ -9,11 +9,15 @@
     "tabs",
     "contextMenus",
     "notifications",
-    "activeTab"
+    "activeTab",
+    "https://tripletex.no/*"
   ],
-  "background": {
-    "scripts": ["background.js"]
-  },
+  "content_scripts": [
+    {
+      "matches": ["https://tripletex.no/*"],
+      "js": ["haxx.js"]
+    }
+  ],
   "icons": {
     "16": "icon.png"
   },
