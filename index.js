@@ -1,5 +1,5 @@
 module.exports = init;
-var $$, body;
+var $$, body, doc;
 
 function handleKeypress(e) {
   if (e.keyCode === 9) {
@@ -9,9 +9,9 @@ function handleKeypress(e) {
   }
 }
 
-function attachEvents(body) {
-  console.log($$);
-  $$(body[0]).find('#hourListTable td input').keydown(handleKeypress);
+function attachEvents(doc) {
+  $$(doc).off('keydown', '#hourListTable td input', handleKeypress);
+  $$(doc).on('keydown', '#hourListTable td input', handleKeypress);
 }
 
 function alterDocument(body) {
@@ -25,7 +25,10 @@ function alterDocument(body) {
 function init(jq, top) {
   $$ = jq;
   body = top.frames.content.document.getElementsByTagName('body');
-  console.log(body);
-  attachEvents(body);
+  doc = top.frames.content.document;
+  setInterval(function() {
+    doc = top.frames.content.document;
+    attachEvents(doc);
+  }, 1000);
   alterDocument(body);
 }

@@ -18,10 +18,10 @@ var jQuery = function(){
   this.find = function(sel) {
     return this;
   };
-  this.keydown = function(sel) {
+  this.on = function(sel, con, fn) {
     // For coverage.
-    sel({keyCode: 9, preventDefault: function(){}});
-    sel({keyCode: 8, preventDefault: function(){}});
+    fn({keyCode: 9, preventDefault: function(){}});
+    fn({keyCode: 8, preventDefault: function(){}});
     return this;
   };
   this.each = function(fn) {
@@ -35,6 +35,7 @@ var jQuery = function(){
   this.focus = this.next;
   this.html = this.focus;
   this.replace = this.html;
+  this.off = this.on;
   return this;
 };
 
@@ -42,7 +43,11 @@ describe('Basic testing', function() {
   it('Should expose a function', function() {
     haxx.should.be.instanceOf(Function);
   });
-  it('Should pass when we are mocking all parameters', function() {
+  it('Should pass when we are mocking all parameters', function(done) {
     haxx(jQuery, top);
+    // Wait a little.
+    setTimeout(function() {
+      done()
+    }, 1500);
   });
 });

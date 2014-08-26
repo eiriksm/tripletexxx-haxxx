@@ -11,9 +11,10 @@ $(document).ready(function() {
 
 },{"./":2,"jquery-browserify":3}],2:[function(require,module,exports){
 module.exports = init;
-var $$, body;
+var $$, body, doc;
 
 function handleKeypress(e) {
+  console.log(e)
   if (e.keyCode === 9) {
     $$(this).closest('tr').next().find('textarea').focus();
     e.preventDefault();
@@ -21,8 +22,9 @@ function handleKeypress(e) {
   }
 }
 
-function attachEvents(body) {
-  $$(body[0]).find('#hourListTable td input').keydown(handleKeypress);
+function attachEvents(doc) {
+  $$(doc).off('keydown', '#hourListTable td input', handleKeypress);
+  $$(doc).on('keydown', '#hourListTable td input', handleKeypress);
 }
 
 function alterDocument(body) {
@@ -36,8 +38,11 @@ function alterDocument(body) {
 function init(jq, top) {
   $$ = jq;
   body = top.frames.content.document.getElementsByTagName('body');
-  console.log(body);
-  attachEvents(body);
+  doc = top.frames.content.document;
+  setInterval(function() {
+    doc = top.frames.content.document;
+    attachEvents(doc);
+  }, 1000);
   alterDocument(body);
 }
 
