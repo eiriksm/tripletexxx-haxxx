@@ -36,7 +36,6 @@ function init(jq, win) {
     $(body).find('.tlx-icon-delete-row').each(function(i,n) {
       var $tr = $(this).closest('tr');
       var skip = false;
-      console.log(i,n)
       $tr.find('input.hours').each(function(j,m) {
         if ($(m).val().length > 0) {
           skip=true;
