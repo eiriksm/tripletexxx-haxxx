@@ -4,6 +4,6 @@ var haxx = require('./');
 $(document).ready(function() {
   // Christ.
   setTimeout(function() {
-    haxx($, top);
+    haxx($, window);
   }, 1000);
 });

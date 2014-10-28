@@ -1,19 +1,15 @@
 var should = require('should');
 var haxx = require('..');
 //body = top.frames.content.document.getElementsByTagName('body');
-var top = {
-  frames: {
-    content: {
-      document: {
-        getElementsByTagName: function(name) {
-          return [
-            {name: name}
-          ];
-        }
-      }
+var win = {
+  document: {
+    getElementsByTagName: function(name) {
+      return [
+        {name: name}
+      ];
     }
   }
-}
+};
 var jQuery = function(){
   this.find = function(sel) {
     return this;
@@ -44,7 +40,7 @@ describe('Basic testing', function() {
     haxx.should.be.instanceOf(Function);
   });
   it('Should pass when we are mocking all parameters', function(done) {
-    haxx(jQuery, top);
+    haxx(jQuery, win);
     // Wait a little.
     setTimeout(function() {
       done()

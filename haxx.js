@@ -5,7 +5,7 @@ var haxx = require('./');
 $(document).ready(function() {
   // Christ.
   setTimeout(function() {
-    haxx($, top);
+    haxx($, window);
   }, 1000);
 });
 
@@ -14,7 +14,6 @@ module.exports = init;
 var $$, body, doc;
 
 function handleKeypress(e) {
-  console.log(e)
   if (e.keyCode === 9) {
     $$(this).closest('tr').next().find('textarea').focus();
     e.preventDefault();
@@ -23,27 +22,43 @@ function handleKeypress(e) {
 }
 
 function attachEvents(doc) {
-  $$(doc).off('keydown', '#hourListTable td input', handleKeypress);
-  $$(doc).on('keydown', '#hourListTable td input', handleKeypress);
+  $$(doc).off('keydown', '#ajaxContenthourListTable td input', handleKeypress);
+  $$(doc).on('keydown', '#ajaxContenthourListTable td input', handleKeypress);
 }
 
 function alterDocument(body) {
-  $$(body[0]).find('.contentTable:not(#hourListTable) td').each(function(i, n) {
+  $$(body[0]).find('.contentTable:not(#ajaxContenthourListTable) td').each(function(i, n) {
     var text = $$(n).html();
     text = text.replace("\n", '<br>');
     $$(n).html(text);
   });
 }
 
-function init(jq, top) {
+function init(jq, win) {
   $$ = jq;
-  body = top.frames.content.document.getElementsByTagName('body');
-  doc = top.frames.content.document;
+  doc = win.document;
+  body = doc.getElementsByTagName('body');
   setInterval(function() {
-    doc = top.frames.content.document;
+    doc = window.document;
     attachEvents(doc);
   }, 1000);
   alterDocument(body);
+  win.fixit = function() {
+    var $ = jq;
+    $(body).find('.tlx-icon-delete-row').each(function(i,n) {
+      var $tr = $(this).closest('tr');
+      var skip = false;
+      console.log(i,n)
+      $tr.find('input.hours').each(function(j,m) {
+        if ($(m).val().length > 0) {
+          skip=true;
+        }
+      });
+      if (!skip) {
+        $(this).click();
+      }
+    });
+  };
 }
 
 },{}],3:[function(require,module,exports){
